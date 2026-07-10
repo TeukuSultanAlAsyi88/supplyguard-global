@@ -1,0 +1,11 @@
+/*
+|--------------------------------------------------------------------------
+| CSS Utama SupplyGuard Indonesia
+|--------------------------------------------------------------------------
+|
+| File supplyguard.css berada di folder yang sama dengan app.css.
+| Vite akan menggabungkan dan memuat seluruh CSS melalui app.css.
+|
+*/
+
+@import "./supplyguard.css";

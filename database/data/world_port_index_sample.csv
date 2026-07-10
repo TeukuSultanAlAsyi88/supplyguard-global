@@ -1,0 +1,101 @@
+World Port Index Number,Main Port Name,UN_LOCODE,City,Country,Country Code,Latitude,Longitude,Harbor Size,Harbor Type
+10001,Tanjung Priok,IDJKT,Jakarta,Indonesia,ID,-6.1033,106.8869,Large,Coastal Natural
+10002,Tanjung Perak,IDSUB,Surabaya,Indonesia,ID,-7.1987,112.7351,Large,River Natural
+10003,Belawan,IDBLW,Medan,Indonesia,ID,3.785,98.694,Medium,River Basin
+10004,Makassar New Port,IDMAK,Makassar,Indonesia,ID,-5.106,119.408,Medium,Coastal Breakwater
+10005,Port of Shanghai,CNSHA,Shanghai,China,CN,31.2304,121.4737,Very Large,River Natural
+10006,Port of Ningbo-Zhoushan,CNNGB,Ningbo,China,CN,29.8683,121.544,Very Large,Coastal Natural
+10007,Port of Shenzhen,CNSZX,Shenzhen,China,CN,22.5431,114.0579,Very Large,Coastal Natural
+10008,Port of Qingdao,CNQDG,Qingdao,China,CN,36.0671,120.3826,Very Large,Coastal Breakwater
+10009,Port of Guangzhou,CNGZG,Guangzhou,China,CN,23.1291,113.2644,Very Large,River Natural
+10010,Port of Tianjin,CNTXG,Tianjin,China,CN,39.0033,117.71,Very Large,Coastal Breakwater
+10011,Port of Hong Kong,HKHKG,Hong Kong,Hong Kong,HK,22.3193,114.1694,Very Large,Coastal Natural
+10012,Port of Singapore,SGSIN,Singapore,Singapore,SG,1.2644,103.84,Very Large,Coastal Natural
+10013,Port Klang,MYPKG,Klang,Malaysia,MY,3.0,101.4,Very Large,Coastal Natural
+10014,Port of Tanjung Pelepas,MYTPP,Johor,Malaysia,MY,1.3644,103.548,Very Large,Coastal Natural
+10015,Laem Chabang Port,THLCH,Chonburi,Thailand,TH,13.0827,100.883,Large,Coastal Breakwater
+10016,Port of Bangkok,THBKK,Bangkok,Thailand,TH,13.703,100.575,Large,River Basin
+10017,Port of Ho Chi Minh City,VNSGN,Ho Chi Minh City,Vietnam,VN,10.7769,106.7009,Large,River Natural
+10018,Hai Phong Port,VNHPH,Hai Phong,Vietnam,VN,20.8449,106.6881,Large,River Natural
+10019,Port of Manila,PHMNL,Manila,Philippines,PH,14.5832,120.969,Large,Coastal Breakwater
+10020,Port of Busan,KRPUS,Busan,South Korea,KR,35.1028,129.0403,Very Large,Coastal Natural
+10021,Port of Incheon,KRINC,Incheon,South Korea,KR,37.4563,126.7052,Large,Coastal Natural
+10022,Port of Yokohama,JPYOK,Yokohama,Japan,JP,35.4437,139.638,Very Large,Coastal Natural
+10023,Port of Tokyo,JPTYO,Tokyo,Japan,JP,35.6177,139.795,Very Large,Coastal Breakwater
+10024,Port of Kobe,JPUKB,Kobe,Japan,JP,34.6901,135.1955,Large,Coastal Natural
+10025,Port of Nagoya,JPNGO,Nagoya,Japan,JP,35.073,136.884,Large,Coastal Natural
+10026,Jawaharlal Nehru Port,INNSA,Navi Mumbai,India,IN,18.9497,72.9512,Very Large,Coastal Natural
+10027,Port of Mundra,INMUN,Mundra,India,IN,22.8395,69.7217,Very Large,Coastal Natural
+10028,Port of Chennai,INMAA,Chennai,India,IN,13.1,80.3,Large,Coastal Breakwater
+10029,Port of Colombo,LKCMB,Colombo,Sri Lanka,LK,6.9413,79.8428,Very Large,Coastal Breakwater
+10030,Port of Chittagong,BDCGP,Chattogram,Bangladesh,BD,22.335,91.8325,Large,River Natural
+10031,Port of Karachi,PKKHI,Karachi,Pakistan,PK,24.85,66.99,Large,Coastal Natural
+10032,Jebel Ali Port,AEJEA,Dubai,United Arab Emirates,AE,24.9857,55.0272,Very Large,Coastal Breakwater
+10033,Port Khalifa,AEKHL,Abu Dhabi,United Arab Emirates,AE,24.811,54.651,Very Large,Coastal Breakwater
+10034,Port of Salalah,OMSLL,Salalah,Oman,OM,16.94,54.003,Large,Coastal Natural
+10035,Jeddah Islamic Port,SAJED,Jeddah,Saudi Arabia,SA,21.4858,39.1664,Very Large,Coastal Breakwater
+10036,Port Said,EGPSD,Port Said,Egypt,EG,31.2653,32.3019,Large,Canal
+10037,Alexandria Port,EGALY,Alexandria,Egypt,EG,31.2001,29.9187,Large,Coastal Breakwater
+10038,Port of Piraeus,GRPIR,Piraeus,Greece,GR,37.942,23.6465,Very Large,Coastal Natural
+10039,Port of Istanbul,TRIST,Istanbul,Türkiye,TR,41.0138,28.9497,Large,Coastal Natural
+10040,Port of Mersin,TRMER,Mersin,Türkiye,TR,36.8,34.6333,Large,Coastal Breakwater
+10041,Port of Rotterdam,NLRTM,Rotterdam,Netherlands,NL,51.95,4.14,Very Large,River Natural
+10042,Port of Antwerp-Bruges,BEANR,Antwerp,Belgium,BE,51.3,4.3,Very Large,River Natural
+10043,Port of Hamburg,DEHAM,Hamburg,Germany,DE,53.5461,9.9661,Very Large,River Natural
+10044,Port of Bremerhaven,DEBRV,Bremerhaven,Germany,DE,53.5396,8.5809,Large,River Natural
+10045,Port of Le Havre,FRLEH,Le Havre,France,FR,49.4938,0.1077,Very Large,Coastal Breakwater
+10046,Port of Marseille Fos,FRMRS,Marseille,France,FR,43.405,5.05,Very Large,Coastal Natural
+10047,Port of Valencia,ESVLC,Valencia,Spain,ES,39.44,-0.31,Very Large,Coastal Breakwater
+10048,Port of Barcelona,ESBCN,Barcelona,Spain,ES,41.35,2.16,Very Large,Coastal Breakwater
+10049,Port of Algeciras,ESALG,Algeciras,Spain,ES,36.13,-5.43,Very Large,Coastal Natural
+10050,Port of Sines,PTSIE,Sines,Portugal,PT,37.95,-8.87,Large,Coastal Natural
+10051,Port of Genoa,ITGOA,Genoa,Italy,IT,44.4056,8.9463,Very Large,Coastal Natural
+10052,Port of Gioia Tauro,ITGIT,Gioia Tauro,Italy,IT,38.46,15.9,Very Large,Coastal Breakwater
+10053,Port of Trieste,ITTRS,Trieste,Italy,IT,45.65,13.77,Large,Coastal Natural
+10054,Port of Felixstowe,GBFXT,Felixstowe,United Kingdom,GB,51.963,1.351,Very Large,Coastal Natural
+10055,Port of Southampton,GBSOU,Southampton,United Kingdom,GB,50.895,-1.43,Large,River Natural
+10056,London Gateway,GBLGP,Thurrock,United Kingdom,GB,51.5,0.5,Large,River Natural
+10057,Port of Dublin,IEDUB,Dublin,Ireland,IE,53.3498,-6.22,Large,River Natural
+10058,Port of Gothenburg,SEGOT,Gothenburg,Sweden,SE,57.7089,11.9746,Large,Coastal Natural
+10059,Port of Aarhus,DKAAR,Aarhus,Denmark,DK,56.1629,10.2039,Large,Coastal Breakwater
+10060,Port of Gdansk,PLGDN,Gdansk,Poland,PL,54.352,18.6466,Large,Coastal Natural
+10061,Port of Constanta,ROCND,Constanta,Romania,RO,44.1598,28.6348,Large,Coastal Natural
+10062,Port of Koper,SIKOP,Koper,Slovenia,SI,45.5481,13.7302,Large,Coastal Natural
+10063,Port of Los Angeles,USLAX,Los Angeles,United States,US,33.7405,-118.272,Very Large,Coastal Natural
+10064,Port of Long Beach,USLGB,Long Beach,United States,US,33.7542,-118.2165,Very Large,Coastal Natural
+10065,Port of New York and New Jersey,USNYC,New York,United States,US,40.6681,-74.0451,Very Large,River Natural
+10066,Port of Savannah,USSAV,Savannah,United States,US,32.0809,-81.0912,Very Large,River Natural
+10067,Port of Houston,USHOU,Houston,United States,US,29.73,-95.27,Very Large,Canal
+10068,Port of Seattle,USSEA,Seattle,United States,US,47.6026,-122.3393,Large,Coastal Natural
+10069,Port of Oakland,USOAK,Oakland,United States,US,37.7955,-122.2785,Large,Coastal Natural
+10070,Port of Vancouver,CAVAN,Vancouver,Canada,CA,49.3,-123.11,Very Large,Coastal Natural
+10071,Port of Montreal,CAMTR,Montreal,Canada,CA,45.5,-73.55,Large,River Natural
+10072,Port of Prince Rupert,CAPRR,Prince Rupert,Canada,CA,54.3122,-130.3271,Large,Coastal Natural
+10073,Port of Manzanillo,MXZLO,Manzanillo,Mexico,MX,19.05,-104.32,Very Large,Coastal Natural
+10074,Port of Veracruz,MXVER,Veracruz,Mexico,MX,19.2,-96.13,Large,Coastal Breakwater
+10075,Port of Balboa,PABLB,Balboa,Panama,PA,8.95,-79.57,Very Large,Canal
+10076,Port of Colon,PAONX,Colon,Panama,PA,9.36,-79.9,Very Large,Canal
+10077,Port of Cartagena,COCTG,Cartagena,Colombia,CO,10.391,-75.4794,Very Large,Coastal Natural
+10078,Port of Santos,BRSSZ,Santos,Brazil,BR,-23.9608,-46.3336,Very Large,Coastal Natural
+10079,Port of Paranagua,BRPNG,Paranagua,Brazil,BR,-25.52,-48.51,Large,Coastal Natural
+10080,Port of Buenos Aires,ARBUE,Buenos Aires,Argentina,AR,-34.6037,-58.3816,Very Large,River Natural
+10081,Port of Callao,PECLL,Callao,Peru,PE,-12.0566,-77.1181,Very Large,Coastal Natural
+10082,Port of Guayaquil,ECGYE,Guayaquil,Ecuador,EC,-2.1962,-79.8862,Large,River Natural
+10083,Port of San Antonio,CLSAI,San Antonio,Chile,CL,-33.5933,-71.6217,Very Large,Coastal Natural
+10084,Port of Durban,ZADUR,Durban,South Africa,ZA,-29.8587,31.0218,Very Large,Coastal Natural
+10085,Port of Cape Town,ZACPT,Cape Town,South Africa,ZA,-33.918,18.43,Large,Coastal Natural
+10086,Port of Ngqura,ZAZBA,Gqeberha,South Africa,ZA,-33.801,25.682,Large,Coastal Breakwater
+10087,Port of Mombasa,KEMBA,Mombasa,Kenya,KE,-4.0435,39.6682,Very Large,Coastal Natural
+10088,Port of Dar es Salaam,TZDAR,Dar es Salaam,Tanzania,TZ,-6.8235,39.2695,Large,Coastal Natural
+10089,Port of Lagos Apapa,NGAPP,Lagos,Nigeria,NG,6.45,3.36,Very Large,Lagoon
+10090,Port of Tema,GHTEM,Tema,Ghana,GH,5.6698,0.0166,Large,Coastal Breakwater
+10091,Port of Tanger Med,MAPTM,Tangier,Morocco,MA,35.89,-5.5,Very Large,Coastal Natural
+10092,Port of Melbourne,AUMEL,Melbourne,Australia,AU,-37.8136,144.9631,Very Large,River Natural
+10093,Port Botany,AUBTB,Sydney,Australia,AU,-33.969,151.219,Very Large,Coastal Breakwater
+10094,Port of Brisbane,AUBNE,Brisbane,Australia,AU,-27.38,153.17,Large,River Natural
+10095,Port of Fremantle,AUFRE,Fremantle,Australia,AU,-32.0569,115.7439,Large,River Natural
+10096,Port of Auckland,NZAKL,Auckland,New Zealand,NZ,-36.84,174.78,Large,Coastal Natural
+10097,Port of Tauranga,NZTRG,Tauranga,New Zealand,NZ,-37.6878,176.1651,Large,Coastal Natural
+10098,Port of Lyttelton,NZLYT,Christchurch,New Zealand,NZ,-43.603,172.72,Medium,Coastal Natural
+10099,Port of Suva,FJSUV,Suva,Fiji,FJ,-18.1416,178.4419,Medium,Coastal Natural
+10100,Port Moresby,PGPOM,Port Moresby,Papua New Guinea,PG,-9.4438,147.1803,Medium,Coastal Natural

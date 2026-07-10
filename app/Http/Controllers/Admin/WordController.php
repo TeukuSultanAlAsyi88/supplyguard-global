@@ -1,0 +1,4 @@
+<?php
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;use App\Models\{PositiveWord,NegativeWord};use Illuminate\Http\Request;
+class WordController extends Controller { public function index(){return view('admin.words.index',['positive'=>PositiveWord::orderBy('word')->paginate(30,['*'],'positive_page'),'negative'=>NegativeWord::orderBy('word')->paginate(30,['*'],'negative_page')]);} public function store(Request $r){$d=$r->validate(['word'=>'required|max:100','type'=>'required|in:positive,negative']);$model=$d['type']==='positive'?PositiveWord::class:NegativeWord::class;$model::firstOrCreate(['word'=>strtolower(trim($d['word']))]);return back()->with('success','Kata sentimen ditambahkan.');} public function destroy(string $type,int $id){$model=$type==='positive'?PositiveWord::class:NegativeWord::class;$model::findOrFail($id)->delete();return back()->with('success','Kata dihapus.');} }
