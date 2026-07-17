@@ -2690,3 +2690,15 @@ canvas {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* =========================================================
+   HILANGKAN KOTAK INFORMASI PUTIH DI HEADER HALAMAN
+========================================================= */
+
+body.app-dark-theme .badge.text-bg-light.border,
+body.app-dark-theme .badge.bg-light.text-dark.border,
+body.app-dark-theme .badge.bg-white.text-dark.border,
+body.app-dark-theme .page-source-badge,
+body.app-dark-theme .page-meta-badge {
+    display: none !important;
+}

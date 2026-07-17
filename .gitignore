@@ -20,3 +20,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/storage/logs/*.log
+*.bak
+tatus

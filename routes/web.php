@@ -2,22 +2,25 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\{
-    ApiDocsController,
-    AuthController,
-    ComparisonController,
-    CountryController,
-    CurrencyController,
-    DashboardController,
-    NewsController,
-    PortController,
-    RiskController,
-    VisualizationController,
-    WatchlistController,
-    WeatherController
-};
+use App\Http\Controllers\ApiDocsController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ComparisonController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PortController;
+use App\Http\Controllers\RiskController;
+use App\Http\Controllers\VisualizationController;
+use App\Http\Controllers\WatchlistController;
+use App\Http\Controllers\WeatherController;
 
-use App\Http\Controllers\Admin;
+use App\Http\Controllers\Admin\ApiLogController as AdminApiLogController;
+use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\PortController as AdminPortController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\WordController as AdminWordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +28,22 @@ use App\Http\Controllers\Admin;
 |--------------------------------------------------------------------------
 */
 
-Route::redirect('/', '/dashboard');
+Route::get('/', function () {
+    if (!auth()->check()) {
+        return redirect()->route('login');
+    }
+
+    $user = auth()->user();
+
+    if (
+        method_exists($user, 'isAdmin')
+        && $user->isAdmin()
+    ) {
+        return redirect()->route('admin.dashboard');
+    }
+
+    return redirect()->route('dashboard');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -34,20 +52,31 @@ Route::redirect('/', '/dashboard');
 */
 
 Route::middleware('guest')->group(function () {
-    Route::get('/masuk', [AuthController::class, 'showLogin'])
-        ->name('login');
+    Route::get(
+        '/masuk',
+        [AuthController::class, 'showLogin']
+    )->name('login');
 
-    Route::post('/masuk', [AuthController::class, 'login'])
-        ->name('login.store');
+    Route::post(
+        '/masuk',
+        [AuthController::class, 'login']
+    )->name('login.store');
 
-    Route::get('/daftar', [AuthController::class, 'showRegister'])
-        ->name('register');
+    Route::get(
+        '/daftar',
+        [AuthController::class, 'showRegister']
+    )->name('register');
 
-    Route::post('/daftar', [AuthController::class, 'register'])
-        ->name('register.store');
+    Route::post(
+        '/daftar',
+        [AuthController::class, 'register']
+    )->name('register.store');
 });
 
-Route::post('/keluar', [AuthController::class, 'logout'])
+Route::post(
+    '/keluar',
+    [AuthController::class, 'logout']
+)
     ->middleware('auth')
     ->name('logout');
 
@@ -58,115 +87,70 @@ Route::post('/keluar', [AuthController::class, 'logout'])
 */
 
 Route::middleware('auth')->group(function () {
+    Route::get(
+        '/dashboard',
+        [DashboardController::class, 'index']
+    )->name('dashboard');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Dasbor
-    |--------------------------------------------------------------------------
-    */
+    Route::get(
+        '/dashboard/live',
+        [DashboardController::class, 'live']
+    )->name('dashboard.live');
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->name('dashboard');
+    Route::get(
+        '/negara',
+        [CountryController::class, 'index']
+    )->name('countries.index');
 
-    /*
-     * Route ini dipanggil melalui AJAX untuk memperbarui isi dasbor
-     * tanpa melakukan reload seluruh halaman.
-     */
-    Route::get('/dashboard/live', [DashboardController::class, 'live'])
-        ->name('dashboard.live');
+    Route::get(
+        '/negara/{country}',
+        [CountryController::class, 'show']
+    )->name('countries.show');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Data Negara
-    |--------------------------------------------------------------------------
-    */
+    Route::post(
+        '/negara-sinkron',
+        [CountryController::class, 'sync']
+    )->name('countries.sync');
 
-    Route::get('/negara', [CountryController::class, 'index'])
-        ->name('countries.index');
+    Route::get(
+        '/cuaca',
+        [WeatherController::class, 'index']
+    )->name('weather.index');
 
-    Route::get('/negara/{country}', [CountryController::class, 'show'])
-        ->name('countries.show');
+    Route::get(
+        '/nilai-tukar',
+        [CurrencyController::class, 'index']
+    )->name('currency.index');
 
-    Route::post('/negara-sinkron', [CountryController::class, 'sync'])
-        ->name('countries.sync');
+    Route::get(
+        '/berita',
+        [NewsController::class, 'index']
+    )->name('news.index');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Pemantauan Cuaca
-    |--------------------------------------------------------------------------
-    */
+    Route::get(
+        '/pelabuhan',
+        [PortController::class, 'index']
+    )->name('ports.index');
 
-    Route::get('/cuaca', [WeatherController::class, 'index'])
-        ->name('weather.index');
-
-    /*
-    |--------------------------------------------------------------------------
-    | Nilai Tukar Mata Uang
-    |--------------------------------------------------------------------------
-    */
-
-    Route::get('/nilai-tukar', [CurrencyController::class, 'index'])
-        ->name('currency.index');
-
-    /*
-    |--------------------------------------------------------------------------
-    | Intelijen Berita
-    |--------------------------------------------------------------------------
-    */
-
-    Route::get('/berita', [NewsController::class, 'index'])
-        ->name('news.index');
-
-    /*
-    |--------------------------------------------------------------------------
-    | Lokasi Pelabuhan
-    |--------------------------------------------------------------------------
-    */
-
-    Route::get('/pelabuhan', [PortController::class, 'index'])
-        ->name('ports.index');
-
-    /*
-    |--------------------------------------------------------------------------
-    | Analisis Risiko
-    |--------------------------------------------------------------------------
-    */
-
-    Route::get('/analisis-risiko', [RiskController::class, 'index'])
-        ->name('risk.index');
+    Route::get(
+        '/analisis-risiko',
+        [RiskController::class, 'index']
+    )->name('risk.index');
 
     Route::post(
         '/analisis-risiko/{country}',
         [RiskController::class, 'calculate']
     )->name('risk.calculate');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Perbandingan Negara
-    |--------------------------------------------------------------------------
-    */
-
     Route::get(
         '/perbandingan-negara',
         [ComparisonController::class, 'index']
     )->name('comparison.index');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Visualisasi Data
-    |--------------------------------------------------------------------------
-    */
-
     Route::get(
         '/visualisasi-data',
         [VisualizationController::class, 'index']
     )->name('visualization.index');
-
-    /*
-    |--------------------------------------------------------------------------
-    | Daftar Pemantauan
-    |--------------------------------------------------------------------------
-    */
 
     Route::get(
         '/daftar-pemantauan',
@@ -183,161 +167,117 @@ Route::middleware('auth')->group(function () {
         [WatchlistController::class, 'destroy']
     )->name('watchlists.destroy');
 
-    /*
-    |--------------------------------------------------------------------------
-    | Dokumentasi REST API
-    |--------------------------------------------------------------------------
-    */
-
     Route::get(
         '/dokumentasi-api',
         [ApiDocsController::class, 'index']
     )->name('api-docs.index');
-
-    /*
-    |--------------------------------------------------------------------------
-    | Halaman Administrator
-    |--------------------------------------------------------------------------
-    */
-
-    Route::prefix('admin')
-        ->name('admin.')
-        ->middleware('admin')
-        ->group(function () {
-
-            /*
-            |--------------------------------------------------------------------------
-            | Dasbor Administrator
-            |--------------------------------------------------------------------------
-            */
-
-            Route::get(
-                '/',
-                [Admin\DashboardController::class, 'index']
-            )->name('dashboard');
-
-            /*
-            |--------------------------------------------------------------------------
-            | Kelola Pengguna
-            |--------------------------------------------------------------------------
-            */
-
-            Route::get(
-                '/pengguna',
-                [Admin\UserController::class, 'index']
-            )->name('users.index');
-
-            Route::put(
-                '/pengguna/{user}',
-                [Admin\UserController::class, 'update']
-            )->name('users.update');
-
-            Route::delete(
-                '/pengguna/{user}',
-                [Admin\UserController::class, 'destroy']
-            )->name('users.destroy');
-
-            /*
-            |--------------------------------------------------------------------------
-            | Kelola Pelabuhan
-            |--------------------------------------------------------------------------
-            */
-
-            Route::get(
-                '/pelabuhan',
-                [Admin\PortController::class, 'index']
-            )->name('ports.index');
-
-            Route::post(
-                '/pelabuhan',
-                [Admin\PortController::class, 'store']
-            )->name('ports.store');
-
-            /*
-             * Route contoh CSV dan import harus diletakkan
-             * sebelum route yang menggunakan parameter {port}.
-             */
-            Route::get(
-                '/pelabuhan/contoh-csv',
-                [Admin\PortController::class, 'sample']
-            )->name('ports.sample');
-
-            Route::post(
-                '/pelabuhan/import',
-                [Admin\PortController::class, 'import']
-            )->name('ports.import');
-
-            Route::put(
-                '/pelabuhan/{port}',
-                [Admin\PortController::class, 'update']
-            )->name('ports.update');
-
-            Route::delete(
-                '/pelabuhan/{port}',
-                [Admin\PortController::class, 'destroy']
-            )->name('ports.destroy');
-
-            /*
-            |--------------------------------------------------------------------------
-            | Kelola Artikel
-            |--------------------------------------------------------------------------
-            */
-
-            Route::get(
-                '/artikel',
-                [Admin\ArticleController::class, 'index']
-            )->name('articles.index');
-
-            Route::post(
-                '/artikel',
-                [Admin\ArticleController::class, 'store']
-            )->name('articles.store');
-
-            Route::put(
-                '/artikel/{article}',
-                [Admin\ArticleController::class, 'update']
-            )->name('articles.update');
-
-            Route::delete(
-                '/artikel/{article}',
-                [Admin\ArticleController::class, 'destroy']
-            )->name('articles.destroy');
-
-            /*
-            |--------------------------------------------------------------------------
-            | Kelola Kamus Sentimen
-            |--------------------------------------------------------------------------
-            */
-
-            Route::get(
-                '/kata-sentimen',
-                [Admin\WordController::class, 'index']
-            )->name('words.index');
-
-            Route::post(
-                '/kata-sentimen',
-                [Admin\WordController::class, 'store']
-            )->name('words.store');
-
-            Route::delete(
-                '/kata-sentimen/{type}/{id}',
-                [Admin\WordController::class, 'destroy']
-            )->name('words.destroy');
-
-            /*
-            |--------------------------------------------------------------------------
-            | Log Integrasi API
-            |--------------------------------------------------------------------------
-            */
-
-            Route::get(
-                '/log-api',
-                [Admin\ApiLogController::class, 'index']
-            )->name('api-logs.index');
-
-            Route::delete(
-                '/log-api',
-                [Admin\ApiLogController::class, 'clear']
-            )->name('api-logs.clear');
-        });
 });
+
+/*
+|--------------------------------------------------------------------------
+| Halaman Administrator
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware([
+        'auth',
+        'admin',
+    ])
+    ->group(function () {
+        Route::get(
+            '/',
+            [AdminDashboardController::class, 'index']
+        )->name('dashboard');
+
+        Route::get(
+            '/pengguna',
+            [AdminUserController::class, 'index']
+        )->name('users.index');
+
+        Route::put(
+            '/pengguna/{user}',
+            [AdminUserController::class, 'update']
+        )->name('users.update');
+
+        Route::delete(
+            '/pengguna/{user}',
+            [AdminUserController::class, 'destroy']
+        )->name('users.destroy');
+
+        Route::get(
+            '/pelabuhan',
+            [AdminPortController::class, 'index']
+        )->name('ports.index');
+
+        Route::post(
+            '/pelabuhan',
+            [AdminPortController::class, 'store']
+        )->name('ports.store');
+
+        Route::get(
+            '/pelabuhan/contoh-csv',
+            [AdminPortController::class, 'sample']
+        )->name('ports.sample');
+
+        Route::post(
+            '/pelabuhan/import',
+            [AdminPortController::class, 'import']
+        )->name('ports.import');
+
+        Route::put(
+            '/pelabuhan/{port}',
+            [AdminPortController::class, 'update']
+        )->name('ports.update');
+
+        Route::delete(
+            '/pelabuhan/{port}',
+            [AdminPortController::class, 'destroy']
+        )->name('ports.destroy');
+
+        Route::get(
+            '/artikel',
+            [AdminArticleController::class, 'index']
+        )->name('articles.index');
+
+        Route::post(
+            '/artikel',
+            [AdminArticleController::class, 'store']
+        )->name('articles.store');
+
+        Route::put(
+            '/artikel/{article}',
+            [AdminArticleController::class, 'update']
+        )->name('articles.update');
+
+        Route::delete(
+            '/artikel/{article}',
+            [AdminArticleController::class, 'destroy']
+        )->name('articles.destroy');
+
+        Route::get(
+            '/kata-sentimen',
+            [AdminWordController::class, 'index']
+        )->name('words.index');
+
+        Route::post(
+            '/kata-sentimen',
+            [AdminWordController::class, 'store']
+        )->name('words.store');
+
+        Route::delete(
+            '/kata-sentimen/{type}/{id}',
+            [AdminWordController::class, 'destroy']
+        )->name('words.destroy');
+
+        Route::get(
+            '/log-api',
+            [AdminApiLogController::class, 'index']
+        )->name('api-logs.index');
+
+        Route::delete(
+            '/log-api',
+            [AdminApiLogController::class, 'clear']
+        )->name('api-logs.clear');
+    });

@@ -205,8 +205,11 @@
     {{-- Navigation --}}
     <div class="sidebar-navigation">
 
+        {{-- =================================================
+             RINGKASAN
+        ================================================== --}}
         <div class="nav-section">
-            Command Center
+            Ringkasan
         </div>
 
         <nav class="nav flex-column">
@@ -224,6 +227,16 @@
                     Dasbor
                 </span>
             </a>
+        </nav>
+
+        {{-- =================================================
+             INTELIJEN GLOBAL
+        ================================================== --}}
+        <div class="nav-section">
+            Intelijen Global
+        </div>
+
+        <nav class="nav flex-column">
 
             {{-- Data Negara --}}
             <a
@@ -253,34 +266,6 @@
                 </span>
             </a>
 
-            {{-- Cuaca --}}
-            <a
-                href="{{ route('weather.index') }}"
-                class="nav-link
-                    {{ request()->routeIs('weather.*') ? 'active' : '' }}"
-                aria-current="{{ request()->routeIs('weather.*') ? 'page' : 'false' }}"
-            >
-                <i class="bi bi-cloud-sun-fill"></i>
-
-                <span>
-                    Pemantauan Cuaca
-                </span>
-            </a>
-
-            {{-- Nilai Tukar --}}
-            <a
-                href="{{ route('currency.index') }}"
-                class="nav-link
-                    {{ request()->routeIs('currency.*') ? 'active' : '' }}"
-                aria-current="{{ request()->routeIs('currency.*') ? 'page' : 'false' }}"
-            >
-                <i class="bi bi-currency-exchange"></i>
-
-                <span>
-                    Dampak Nilai Tukar
-                </span>
-            </a>
-
             {{-- Risiko --}}
             <a
                 href="{{ route('risk.index') }}"
@@ -306,6 +291,44 @@
 
                 <span>
                     Visualisasi Data
+                </span>
+            </a>
+        </nav>
+
+        {{-- =================================================
+             MONITORING
+        ================================================== --}}
+        <div class="nav-section">
+            Monitoring
+        </div>
+
+        <nav class="nav flex-column">
+
+            {{-- Cuaca --}}
+            <a
+                href="{{ route('weather.index') }}"
+                class="nav-link
+                    {{ request()->routeIs('weather.*') ? 'active' : '' }}"
+                aria-current="{{ request()->routeIs('weather.*') ? 'page' : 'false' }}"
+            >
+                <i class="bi bi-cloud-sun-fill"></i>
+
+                <span>
+                    Pemantauan Cuaca
+                </span>
+            </a>
+
+            {{-- Nilai Tukar --}}
+            <a
+                href="{{ route('currency.index') }}"
+                class="nav-link
+                    {{ request()->routeIs('currency.*') ? 'active' : '' }}"
+                aria-current="{{ request()->routeIs('currency.*') ? 'page' : 'false' }}"
+            >
+                <i class="bi bi-currency-exchange"></i>
+
+                <span>
+                    Dampak Nilai Tukar
                 </span>
             </a>
 
