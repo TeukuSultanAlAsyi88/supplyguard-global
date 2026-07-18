@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id" data-bs-theme="dark">
+<html lang="id" translate="yes" data-bs-theme="dark">
 <head>
     <meta charset="utf-8">
 
@@ -16,6 +16,11 @@
     <meta
         name="theme-color"
         content="#050816"
+    >
+
+    <meta
+        http-equiv="Content-Language"
+        content="id"
     >
 
     <meta
@@ -81,10 +86,89 @@
         rel="stylesheet"
     >
 
+    {{-- =====================================================
+         TRANSLATE SUPPORT
+         Mendukung translate browser dan Google Translate.
+    ====================================================== --}}
+    <style>
+        .translate-control {
+            min-height: 38px;
+            padding: 6px 10px;
+            color: #94a3b8;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(148, 163, 184, 0.13);
+            border-radius: 12px;
+        }
+
+        .translate-control i {
+            color: #67e8f9;
+        }
+
+        .translate-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .google-translate-element {
+            min-width: 126px;
+            max-width: 170px;
+        }
+
+        .google-translate-element .goog-te-gadget {
+            color: transparent !important;
+            font-family: Inter, system-ui, sans-serif !important;
+            font-size: 0 !important;
+            line-height: 1 !important;
+        }
+
+        .google-translate-element .goog-te-gadget span {
+            display: none !important;
+        }
+
+        .google-translate-element .goog-te-combo {
+            width: 100%;
+            min-height: 28px;
+            margin: 0 !important;
+            padding: 4px 28px 4px 8px;
+            color: #dbeafe;
+            background: rgba(8, 15, 29, 0.94);
+            border: 1px solid rgba(34, 211, 238, 0.18);
+            border-radius: 9px;
+            font-size: 0.68rem;
+            outline: none;
+        }
+
+        .google-translate-element .goog-te-combo:focus {
+            border-color: rgba(34, 211, 238, 0.55);
+            box-shadow: 0 0 0 0.14rem rgba(34, 211, 238, 0.10);
+        }
+
+        .translate-browser-note {
+            display: none;
+        }
+
+        body > .skiptranslate,
+        iframe.goog-te-banner-frame,
+        .goog-te-banner-frame {
+            display: none !important;
+        }
+
+        body {
+            top: 0 !important;
+        }
+
+        @media (max-width: 991.98px) {
+            .translate-control {
+                display: none !important;
+            }
+        }
+    </style>
+
     @stack('styles')
 </head>
 
-<body class="app-dark-theme @yield('body-class')">
+<body class="app-dark-theme @yield('body-class')" translate="yes">
 
 @php
     $currentUser = auth()->user();
@@ -468,6 +552,23 @@
         </div>
 
         <div class="d-flex align-items-center gap-2">
+
+            {{-- Translate --}}
+            <div
+                class="translate-control d-none d-lg-flex align-items-center gap-2"
+                title="Terjemahkan halaman dengan Google Translate atau fitur translate bawaan browser"
+            >
+                <i class="bi bi-translate"></i>
+
+                <span class="translate-label">
+                    Terjemahkan
+                </span>
+
+                <div
+                    id="google_translate_element"
+                    class="google-translate-element"
+                ></div>
+            </div>
 
             {{-- System online --}}
             <div
@@ -1143,6 +1244,56 @@ window.setTimeout(
     },
     8000
 );
+</script>
+
+{{-- =====================================================
+     GOOGLE TRANSLATE SUPPORT
+===================================================== --}}
+<script>
+/**
+ * Google Translate widget bersifat tambahan.
+ * Browser tetap bisa memakai fitur Translate bawaan walaupun script ini gagal dimuat.
+ */
+window.googleTranslateElementInit = function () {
+    if (
+        typeof google === 'undefined' ||
+        !google.translate ||
+        !document.getElementById('google_translate_element')
+    ) {
+        return;
+    }
+
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'id',
+            includedLanguages: 'id,en,ms,ar,zh-CN,zh-TW,ja,ko,fr,de,es,pt,hi,th,vi',
+            autoDisplay: false,
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        },
+        'google_translate_element'
+    );
+};
+
+(function loadGoogleTranslateWidget() {
+    if (document.getElementById('googleTranslateScript')) {
+        return;
+    }
+
+    const script = document.createElement('script');
+
+    script.id = 'googleTranslateScript';
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.async = true;
+    script.defer = true;
+
+    script.onerror = function () {
+        console.warn(
+            'Google Translate widget tidak dapat dimuat. Fitur translate bawaan browser tetap dapat digunakan.'
+        );
+    };
+
+    document.head.appendChild(script);
+})();
 </script>
 
 @stack('scripts')

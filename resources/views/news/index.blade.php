@@ -1,19 +1,296 @@
 @extends('layouts.app')
+
 @section('title','Intelijen Berita')
 @section('heading','Intelijen Berita')
+
 @section('content')
-<div class="d-flex flex-wrap justify-content-between gap-3 mb-4"><div><h2 class="page-title">Berita Ekonomi dan Logistik</h2><p class="text-muted mb-0">Analisis sentimen berbasis kamus kata positif dan negatif buatan mahasiswa.</p></div><span class="badge text-bg-light border">GNews + Lexicon PHP</span></div>
-<div class="card mb-4"><div class="card-body"><form id="newsForm" class="row g-3 align-items-end"><div class="col-lg-5"><label class="form-label">Kata kunci</label><input id="newsQuery" class="form-control" value="{{ $query }}" placeholder="logistics trade shipping economy"></div><div class="col-lg-4"><label class="form-label">Negara</label><select id="newsCountry" class="form-select"><option value="">Semua negara</option>@foreach($countries as $c)<option value="{{ $c->id }}" data-code="{{ $c->code }}" @selected($country?->id===$c->id)>{{ $c->name }}</option>@endforeach</select></div><div class="col-lg-3 d-grid"><button class="btn btn-primary"><i class="bi bi-search me-1"></i> Cari</button></div></form></div></div>
-<div class="row g-4 mb-4"><div class="col-xl-8"><div class="row g-4" id="sentimentCards">@foreach($summary as $label=>$value)<div class="col-md-4"><div class="card h-100"><div class="card-body text-center"><div class="text-muted">{{ $label }}</div><div class="display-6 fw-bold" id="sentiment-{{ strtolower($label) }}">{{ number_format($value['percentage'],1) }}%</div><small>{{ $value['count'] }} berita</small></div></div></div>@endforeach</div></div><div class="col-xl-4"><div class="card h-100"><div class="card-body"><h5>Distribusi Sentimen</h5><canvas id="sentimentChart" height="180"></canvas></div></div></div></div>
+<div class="d-flex flex-wrap justify-content-between gap-3 mb-4">
+    <div>
+        <h2 class="page-title">Berita Ekonomi dan Logistik</h2>
+        <p class="text-muted mb-0">Analisis sentimen berbasis kamus kata positif dan negatif buatan mahasiswa.</p>
+    </div>
+
+    <span class="badge text-bg-light border">GNews + Lexicon PHP</span>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form id="newsForm" class="row g-3 align-items-end">
+            <div class="col-lg-5">
+                <label class="form-label">Kata kunci</label>
+                <input
+                    id="newsQuery"
+                    class="form-control"
+                    value="{{ $query }}"
+                    placeholder="logistics trade shipping economy"
+                >
+            </div>
+
+            <div class="col-lg-4">
+                <label class="form-label">Negara</label>
+                <select id="newsCountry" class="form-select">
+                    <option value="">Semua negara</option>
+
+                    @foreach($countries as $c)
+                        <option
+                            value="{{ $c->id }}"
+                            data-code="{{ $c->code }}"
+                            @selected($country?->id === $c->id)
+                        >
+                            {{ $c->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-lg-3 d-grid">
+                <button class="btn btn-primary">
+                    <i class="bi bi-search me-1"></i>
+                    Cari
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-xl-8">
+        <div class="row g-4" id="sentimentCards">
+            @foreach($summary as $label => $value)
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="text-muted">{{ $label }}</div>
+                            <div
+                                class="display-6 fw-bold"
+                                id="sentiment-{{ strtolower($label) }}"
+                            >
+                                {{ number_format($value['percentage'], 1) }}%
+                            </div>
+                            <small>{{ $value['count'] }} berita</small>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <div class="col-xl-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5>Distribusi Sentimen</h5>
+                <canvas id="sentimentChart" height="180"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="newsList" class="row g-4"></div>
 @endsection
+
+@push('styles')
+<style>
+    .news-image-wrap {
+        width: 100%;
+        height: 190px;
+        overflow: hidden;
+        border-radius: 14px;
+        background: rgba(15, 23, 42, 0.65);
+        margin-bottom: 16px;
+    }
+
+    .news-image-wrap img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+        .news-image-wrap {
+            height: 170px;
+        }
+    }
+</style>
+@endpush
+
 @push('scripts')
 <script>
 let sentimentChart;
-function badge(sentiment){return sentiment==='Positif'?'text-bg-success':(sentiment==='Negatif'?'text-bg-danger':'text-bg-secondary');}
-function renderSummary(items){const labels=['Positif','Netral','Negatif'],counts=Object.fromEntries(labels.map(x=>[x,items.filter(n=>n.sentiment===x).length])),total=Math.max(1,items.length),percentages=labels.map(x=>Math.round(counts[x]/total*1000)/10);labels.forEach((x,i)=>{const el=document.getElementById(`sentiment-${x.toLowerCase()}`);if(el){el.textContent=`${sg.number(percentages[i],1)}%`;el.nextElementSibling.textContent=`${counts[x]} berita`;}});if(sentimentChart)sentimentChart.destroy();sentimentChart=new Chart(document.getElementById('sentimentChart'),{type:'doughnut',data:{labels,datasets:[{data:percentages}]},options:{plugins:{legend:{position:'bottom'}}}});}
-function renderNews(items){const box=document.getElementById('newsList');if(!items.length){box.innerHTML='<div class="col-12"><div class="alert alert-info">Belum ada berita. Isi GNEWS_API_KEY di file .env atau gunakan data demo dari seeder.</div></div>';return;}box.innerHTML=items.map(n=>`<div class="col-lg-6"><article class="card h-100"><div class="card-body"><div class="d-flex justify-content-between gap-3"><h5>${sg.escape(n.title)}</h5><span class="badge align-self-start ${badge(n.sentiment)}">${sg.escape(n.sentiment)}</span></div><p class="text-muted">${sg.escape(n.description||'Tidak ada deskripsi.')}</p><div class="small text-muted">${sg.escape(n.source||'-')} Â· ${n.published_at?new Date(n.published_at).toLocaleString('id-ID'):'-'}</div><div class="small mt-2"><span class="text-success">Positif: ${n.positive_score??0}</span> Â· <span class="text-danger">Negatif: ${n.negative_score??0}</span></div>${n.url?`<a href="${sg.escape(n.url)}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary mt-3">Baca sumber</a>`:''}</div></article></div>`).join('');}
-const initial=@json($news);renderSummary(initial);renderNews(initial);
-document.getElementById('newsForm').addEventListener('submit',async e=>{e.preventDefault();const q=document.getElementById('newsQuery').value.trim(),select=document.getElementById('newsCountry'),code=select.selectedOptions[0]?.dataset.code||'';sg.loading(true);try{const payload=await sg.fetchJson(`{{ url('/api/news') }}?q=${encodeURIComponent(q)}&country=${encodeURIComponent(code)}&limit=20`);renderSummary(payload.data||[]);renderNews(payload.data||[]);sg.toast('Daftar berita dan sentimen diperbarui.');}catch(err){sg.toast(err.message,false);}finally{sg.loading(false);}});
+
+const newsFallbackImage = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+<svg width="900" height="520" viewBox="0 0 900 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="900" height="520" fill="#020617"/>
+    <rect x="40" y="40" width="820" height="440" rx="34" fill="#0F172A"/>
+    <path d="M40 402L218 270L344 356L498 224L860 412V446C860 464.778 844.778 480 826 480H74C55.2223 480 40 464.778 40 446V402Z" fill="#1E293B"/>
+    <circle cx="674" cy="150" r="56" fill="#0EA5E9" fill-opacity="0.24"/>
+    <rect x="94" y="84" width="248" height="22" rx="11" fill="#38BDF8" fill-opacity="0.55"/>
+    <rect x="94" y="124" width="362" height="16" rx="8" fill="#94A3B8" fill-opacity="0.28"/>
+    <rect x="94" y="154" width="310" height="16" rx="8" fill="#94A3B8" fill-opacity="0.18"/>
+    <rect x="94" y="404" width="172" height="34" rx="17" fill="#0EA5E9" fill-opacity="0.2"/>
+    <text x="120" y="428" fill="#BAE6FD" font-family="Arial, sans-serif" font-size="18" font-weight="700">SupplyGuard News</text>
+</svg>
+`)}`;
+
+function badge(sentiment) {
+    return sentiment === 'Positif'
+        ? 'text-bg-success'
+        : (sentiment === 'Negatif' ? 'text-bg-danger' : 'text-bg-secondary');
+}
+
+function newsImage(item) {
+    return item.image_url
+        || item.url_to_image
+        || item.thumbnail
+        || item.image
+        || item.imageUrl
+        || item.urlToImage
+        || newsFallbackImage;
+}
+
+function renderSummary(items) {
+    const labels = ['Positif', 'Netral', 'Negatif'];
+
+    const counts = Object.fromEntries(
+        labels.map(x => [
+            x,
+            items.filter(n => n.sentiment === x).length
+        ])
+    );
+
+    const total = Math.max(1, items.length);
+
+    const percentages = labels.map(x =>
+        Math.round(counts[x] / total * 1000) / 10
+    );
+
+    labels.forEach((x, i) => {
+        const el = document.getElementById(`sentiment-${x.toLowerCase()}`);
+
+        if (el) {
+            el.textContent = `${sg.number(percentages[i], 1)}%`;
+            el.nextElementSibling.textContent = `${counts[x]} berita`;
+        }
+    });
+
+    if (sentimentChart) {
+        sentimentChart.destroy();
+    }
+
+    sentimentChart = new Chart(document.getElementById('sentimentChart'), {
+        type: 'doughnut',
+        data: {
+            labels,
+            datasets: [
+                {
+                    data: percentages
+                }
+            ]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+}
+
+function renderNews(items) {
+    const box = document.getElementById('newsList');
+
+    if (!items.length) {
+        box.innerHTML = `
+            <div class="col-12">
+                <div class="alert alert-info">
+                    Belum ada berita. Isi GNEWS_API_KEY di file .env atau gunakan data demo dari seeder.
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+    box.innerHTML = items.map(n => {
+        const image = newsImage(n);
+
+        return `
+            <div class="col-lg-6">
+                <article class="card h-100">
+                    <div class="card-body">
+                        <div class="news-image-wrap">
+                            <img
+                                src="${sg.escape(image)}"
+                                alt="${sg.escape(n.title || 'Berita SupplyGuard')}"
+                                loading="lazy"
+                                onerror="this.onerror=null;this.src='${newsFallbackImage}';"
+                            >
+                        </div>
+
+                        <div class="d-flex justify-content-between gap-3">
+                            <h5>${sg.escape(n.title)}</h5>
+                            <span class="badge align-self-start ${badge(n.sentiment)}">
+                                ${sg.escape(n.sentiment)}
+                            </span>
+                        </div>
+
+                        <p class="text-muted">
+                            ${sg.escape(n.description || 'Tidak ada deskripsi.')}
+                        </p>
+
+                        <div class="small text-muted">
+                            ${sg.escape(n.source || '-')}
+                            &middot;
+                            ${n.published_at ? new Date(n.published_at).toLocaleString('id-ID') : '-'}
+                        </div>
+
+                        <div class="small mt-2">
+                            <span class="text-success">Positif: ${n.positive_score ?? 0}</span>
+                            &middot;
+                            <span class="text-danger">Negatif: ${n.negative_score ?? 0}</span>
+                        </div>
+
+                        ${
+                            n.url
+                                ? `<a href="${sg.escape(n.url)}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary mt-3">Baca sumber</a>`
+                                : ''
+                        }
+                    </div>
+                </article>
+            </div>
+        `;
+    }).join('');
+}
+
+const initial = @json($news);
+
+renderSummary(initial);
+renderNews(initial);
+
+document.getElementById('newsForm').addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const q = document.getElementById('newsQuery').value.trim();
+    const select = document.getElementById('newsCountry');
+    const code = select.selectedOptions[0]?.dataset.code || '';
+
+    sg.loading(true);
+
+    try {
+        const payload = await sg.fetchJson(
+            `{{ url('/api/news') }}?q=${encodeURIComponent(q)}&country=${encodeURIComponent(code)}&limit=20`
+        );
+
+        renderSummary(payload.data || []);
+        renderNews(payload.data || []);
+
+        sg.toast('Daftar berita dan sentimen diperbarui.');
+    } catch (err) {
+        sg.toast(err.message, false);
+    } finally {
+        sg.loading(false);
+    }
+});
 </script>
 @endpush

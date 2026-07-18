@@ -596,6 +596,277 @@
         white-space: nowrap;
     }
 
+
+
+    /* =====================================================
+       DASHBOARD COVERAGE, MINI VISUALIZATION, ACTIVITY
+    ====================================================== */
+
+    .dashboard-command-center .feature-coverage-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 24px;
+    }
+
+    .dashboard-command-center .feature-coverage-card {
+        position: relative;
+        min-height: 128px;
+        padding: 18px;
+        overflow: hidden;
+        background:
+            radial-gradient(circle at top right, rgba(34, 211, 238, 0.08), transparent 45%),
+            rgba(15, 23, 42, 0.72);
+        border: 1px solid rgba(59, 130, 246, 0.16);
+        border-radius: 16px;
+    }
+
+    .dashboard-command-center .feature-coverage-card::before {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 3px;
+        content: "";
+        background: linear-gradient(180deg, #2563eb, #22d3ee);
+        opacity: 0.85;
+    }
+
+    .dashboard-command-center .feature-coverage-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .dashboard-command-center .feature-coverage-icon {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        color: #7dd3fc;
+        background: rgba(14, 165, 233, 0.10);
+        border: 1px solid rgba(14, 165, 233, 0.20);
+        border-radius: 11px;
+        font-size: 0.92rem;
+    }
+
+    .dashboard-command-center .feature-coverage-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: #86efac;
+        font-size: 0.58rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .dashboard-command-center .feature-coverage-status::before {
+        width: 6px;
+        height: 6px;
+        content: "";
+        background: #22c55e;
+        border-radius: 999px;
+        box-shadow: 0 0 12px rgba(34, 197, 94, 0.45);
+    }
+
+    .dashboard-command-center .feature-coverage-label {
+        color: #94a3b8;
+        font-size: 0.68rem;
+        font-weight: 720;
+    }
+
+    .dashboard-command-center .feature-coverage-value {
+        margin-top: 5px;
+        color: #f8fafc;
+        font-size: 1.2rem;
+        font-weight: 850;
+        letter-spacing: -0.03em;
+    }
+
+    .dashboard-command-center .feature-coverage-time {
+        margin-top: 8px;
+        color: #64748b;
+        font-size: 0.62rem;
+        line-height: 1.4;
+    }
+
+    .dashboard-command-center .dashboard-analytics-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        gap: 18px;
+        margin-top: 24px;
+    }
+
+    .dashboard-command-center .mini-visual-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .dashboard-command-center .mini-visual-card {
+        padding: 16px;
+        background: rgba(8, 15, 29, 0.42);
+        border: 1px solid rgba(148, 163, 184, 0.10);
+        border-radius: 14px;
+    }
+
+    .dashboard-command-center .mini-visual-header {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .dashboard-command-center .mini-visual-header h3 {
+        margin: 0;
+        color: #e2e8f0;
+        font-size: 0.78rem;
+        font-weight: 780;
+    }
+
+    .dashboard-command-center .mini-visual-header small {
+        display: block;
+        margin-top: 3px;
+        color: #64748b;
+        font-size: 0.60rem;
+    }
+
+    .dashboard-command-center .mini-visual-icon {
+        display: grid;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        color: #67e8f9;
+        background: rgba(14, 165, 233, 0.10);
+        border: 1px solid rgba(14, 165, 233, 0.18);
+        border-radius: 10px;
+        font-size: 0.84rem;
+    }
+
+    .dashboard-command-center .mini-chart-wrapper {
+        position: relative;
+        height: 150px;
+    }
+
+    .dashboard-command-center .factor-list {
+        display: grid;
+        gap: 13px;
+        padding: 18px;
+    }
+
+    .dashboard-command-center .factor-item {
+        display: grid;
+        gap: 7px;
+    }
+
+    .dashboard-command-center .factor-line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        color: #cbd5e1;
+        font-size: 0.72rem;
+        font-weight: 730;
+    }
+
+    .dashboard-command-center .factor-line small {
+        color: #94a3b8;
+        font-weight: 700;
+    }
+
+    .dashboard-command-center .factor-meter {
+        height: 6px;
+        overflow: hidden;
+        background: rgba(148, 163, 184, 0.11);
+        border-radius: 999px;
+    }
+
+    .dashboard-command-center .factor-meter span {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, #2563eb, #22d3ee);
+        border-radius: inherit;
+    }
+
+    .dashboard-command-center .activity-list {
+        display: grid;
+        gap: 12px;
+        padding: 18px;
+    }
+
+    .dashboard-command-center .activity-item {
+        display: grid;
+        grid-template-columns: 34px minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+    }
+
+    .dashboard-command-center .activity-item:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+    }
+
+    .dashboard-command-center .activity-icon {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        color: #7dd3fc;
+        background: rgba(14, 165, 233, 0.10);
+        border: 1px solid rgba(14, 165, 233, 0.18);
+        border-radius: 11px;
+    }
+
+    .dashboard-command-center .activity-copy strong {
+        display: block;
+        overflow: hidden;
+        color: #e2e8f0;
+        font-size: 0.72rem;
+        font-weight: 760;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .dashboard-command-center .activity-copy small {
+        display: block;
+        margin-top: 3px;
+        color: #64748b;
+        font-size: 0.60rem;
+    }
+
+    .dashboard-command-center .activity-badge {
+        color: #86efac;
+        background: rgba(34, 197, 94, 0.13);
+        border: 1px solid rgba(34, 197, 94, 0.22);
+        border-radius: 999px;
+        padding: 5px 8px;
+        font-size: 0.56rem;
+        font-weight: 850;
+    }
+
+    @media (max-width: 1399.98px) {
+        .dashboard-command-center .feature-coverage-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 1199.98px) {
+        .dashboard-command-center .dashboard-analytics-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .dashboard-command-center .feature-coverage-grid,
+        .dashboard-command-center .mini-visual-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
     @media (max-width: 1199.98px) {
         .dashboard-command-center .risk-intelligence-grid {
             grid-template-columns:
@@ -652,6 +923,273 @@
 @endpush
 
 @section('content')
+
+
+@php
+    $dashboardSafeTime = function ($value, string $fallback = '-') {
+        if ($value === null || $value === '') {
+            return $fallback;
+        }
+
+        try {
+            return \Illuminate\Support\Carbon::parse($value)->translatedFormat('d M Y, H:i');
+        } catch (\Throwable $exception) {
+            return (string) $value;
+        }
+    };
+
+    $dashboardSafeCount = function (string $table, ?\Closure $query = null) {
+        try {
+            if (! \Illuminate\Support\Facades\Schema::hasTable($table)) {
+                return 0;
+            }
+
+            $builder = \Illuminate\Support\Facades\DB::table($table);
+
+            if ($query) {
+                $query($builder);
+            }
+
+            return (int) $builder->count();
+        } catch (\Throwable $exception) {
+            return 0;
+        }
+    };
+
+    $dashboardSafeLatest = function (string $table, string $column) {
+        try {
+            if (
+                ! \Illuminate\Support\Facades\Schema::hasTable($table)
+                || ! \Illuminate\Support\Facades\Schema::hasColumn($table, $column)
+            ) {
+                return null;
+            }
+
+            return \Illuminate\Support\Facades\DB::table($table)
+                ->whereNotNull($column)
+                ->latest($column)
+                ->value($column);
+        } catch (\Throwable $exception) {
+            return null;
+        }
+    };
+
+    try {
+        $weatherCountryCount = \Illuminate\Support\Facades\Schema::hasTable('weather_data')
+            && \Illuminate\Support\Facades\Schema::hasColumn('weather_data', 'country_id')
+                ? \Illuminate\Support\Facades\DB::table('weather_data')
+                    ->whereNotNull('country_id')
+                    ->distinct()
+                    ->count('country_id')
+                : 0;
+    } catch (\Throwable $exception) {
+        $weatherCountryCount = 0;
+    }
+
+    try {
+        $riskCountryCount = \Illuminate\Support\Facades\Schema::hasTable('risk_scores')
+            && \Illuminate\Support\Facades\Schema::hasColumn('risk_scores', 'country_id')
+                ? \Illuminate\Support\Facades\DB::table('risk_scores')
+                    ->whereNotNull('country_id')
+                    ->distinct()
+                    ->count('country_id')
+                : 0;
+    } catch (\Throwable $exception) {
+        $riskCountryCount = 0;
+    }
+
+    try {
+        $economicCountryCount = \Illuminate\Support\Facades\Schema::hasTable('country_economics')
+            && \Illuminate\Support\Facades\Schema::hasColumn('country_economics', 'country_id')
+                ? \Illuminate\Support\Facades\DB::table('country_economics')
+                    ->whereNotNull('country_id')
+                    ->distinct()
+                    ->count('country_id')
+                : 0;
+    } catch (\Throwable $exception) {
+        $economicCountryCount = 0;
+    }
+
+    $dashboardWeatherLatest = $dashboardSafeLatest('weather_data', 'observed_at');
+    $dashboardCurrencyLatest = $dashboardSafeLatest('currency_rates', 'recorded_at');
+    $dashboardNewsLatest = $dashboardSafeLatest('news_cache', 'published_at');
+    $dashboardRiskLatest = $dashboardSafeLatest('risk_scores', 'calculated_at');
+    $dashboardPortLatest = $dashboardSafeLatest('ports', 'updated_at');
+
+    try {
+        $dashboardEconomicLatest = \Illuminate\Support\Facades\Schema::hasTable('country_economics')
+            && \Illuminate\Support\Facades\Schema::hasColumn('country_economics', 'year')
+                ? \Illuminate\Support\Facades\DB::table('country_economics')->max('year')
+                : null;
+    } catch (\Throwable $exception) {
+        $dashboardEconomicLatest = null;
+    }
+
+    try {
+        $dashboardSentimentLabels = ['Positif', 'Netral', 'Negatif'];
+        $dashboardSentimentData = collect($dashboardSentimentLabels)
+            ->map(function ($label) {
+                return (int) \Illuminate\Support\Facades\DB::table('news_cache')
+                    ->where('sentiment', $label)
+                    ->count();
+            })
+            ->values();
+    } catch (\Throwable $exception) {
+        $dashboardSentimentLabels = ['Positif', 'Netral', 'Negatif'];
+        $dashboardSentimentData = collect([0, 0, 0]);
+    }
+
+    try {
+        $dashboardCurrencyColumns = \Illuminate\Support\Facades\Schema::hasTable('currency_rates')
+            ? \Illuminate\Support\Facades\Schema::getColumnListing('currency_rates')
+            : [];
+
+        $dashboardCurrencyCodeColumn = in_array('target_currency', $dashboardCurrencyColumns, true)
+            ? 'target_currency'
+            : (in_array('currency', $dashboardCurrencyColumns, true) ? 'currency' : null);
+
+        $dashboardCurrencyRateColumn = in_array('rate', $dashboardCurrencyColumns, true)
+            ? 'rate'
+            : (in_array('exchange_rate', $dashboardCurrencyColumns, true) ? 'exchange_rate' : null);
+
+        $dashboardCurrencyDateColumn = in_array('recorded_at', $dashboardCurrencyColumns, true)
+            ? 'recorded_at'
+            : (in_array('created_at', $dashboardCurrencyColumns, true) ? 'created_at' : 'id');
+
+        $dashboardCurrencyRows = collect();
+
+        if ($dashboardCurrencyRateColumn) {
+            $dashboardCurrencySelect = [
+                $dashboardCurrencyRateColumn . ' as currency_rate_value',
+                $dashboardCurrencyDateColumn . ' as currency_time_value',
+            ];
+
+            if ($dashboardCurrencyCodeColumn) {
+                $dashboardCurrencySelect[] = $dashboardCurrencyCodeColumn . ' as currency_code_value';
+            }
+
+            $dashboardCurrencyRows = \Illuminate\Support\Facades\DB::table('currency_rates')
+                ->selectRaw(implode(', ', $dashboardCurrencySelect))
+                ->whereNotNull($dashboardCurrencyRateColumn)
+                ->orderByDesc($dashboardCurrencyDateColumn)
+                ->limit(6)
+                ->get()
+                ->reverse()
+                ->values();
+        }
+    } catch (\Throwable $exception) {
+        $dashboardCurrencyRows = collect();
+    }
+
+    $dashboardCurrencyLabels = $dashboardCurrencyRows
+        ->map(function ($row) {
+            $code = $row->currency_code_value ?? 'FX';
+            $time = $row->currency_time_value ?? null;
+
+            try {
+                $timeLabel = $time
+                    ? \Illuminate\Support\Carbon::parse($time)->format('d/m')
+                    : '';
+            } catch (\Throwable $exception) {
+                $timeLabel = '';
+            }
+
+            return trim(strtoupper((string) $code) . ($timeLabel ? ' ' . $timeLabel : ''));
+        })
+        ->values();
+
+    $dashboardCurrencyData = $dashboardCurrencyRows
+        ->map(fn ($row) => round((float) ($row->currency_rate_value ?? 0), 4))
+        ->values();
+
+    $dashboardRiskDistribution = collect($riskLevels ?? [])
+        ->only(['Rendah', 'Sedang', 'Tinggi', 'Kritis'])
+        ->map(fn ($value) => (int) $value);
+
+    if ($dashboardRiskDistribution->isEmpty()) {
+        $dashboardRiskDistribution = collect([
+            'Rendah' => 0,
+            'Sedang' => 0,
+            'Tinggi' => 0,
+            'Kritis' => 0,
+        ]);
+    }
+
+    $dashboardFeatureCards = [
+        [
+            'label' => 'Pemantauan Cuaca',
+            'value' => number_format($weatherCountryCount) . ' negara',
+            'time' => 'Terbaru: ' . $dashboardSafeTime($dashboardWeatherLatest),
+            'icon' => 'bi-cloud-sun',
+        ],
+        [
+            'label' => 'Dampak Nilai Tukar',
+            'value' => number_format($dashboardSafeCount('currency_rates')) . ' data',
+            'time' => 'Terbaru: ' . $dashboardSafeTime($dashboardCurrencyLatest),
+            'icon' => 'bi-currency-exchange',
+        ],
+        [
+            'label' => 'Intelijen Berita',
+            'value' => number_format($newsCount ?? $dashboardSafeCount('news_cache')) . ' berita',
+            'time' => 'Terbaru: ' . $dashboardSafeTime($dashboardNewsLatest),
+            'icon' => 'bi-newspaper',
+        ],
+        [
+            'label' => 'Analisis Risiko',
+            'value' => number_format($riskCountryCount) . ' negara',
+            'time' => 'Dihitung: ' . $dashboardSafeTime($dashboardRiskLatest),
+            'icon' => 'bi-shield-check',
+        ],
+        [
+            'label' => 'Data Ekonomi',
+            'value' => number_format($economicCountryCount) . ' negara',
+            'time' => 'Tahun data: ' . ($dashboardEconomicLatest ?? '-'),
+            'icon' => 'bi-graph-up-arrow',
+        ],
+        [
+            'label' => 'Lokasi Pelabuhan',
+            'value' => number_format($portCount ?? $dashboardSafeCount('ports')) . ' pelabuhan',
+            'time' => 'Terbaru: ' . $dashboardSafeTime($dashboardPortLatest),
+            'icon' => 'bi-geo-alt',
+        ],
+    ];
+
+    $dashboardActivities = [
+        [
+            'title' => 'Data cuaca global diperbarui',
+            'time' => $dashboardSafeTime($dashboardWeatherLatest),
+            'icon' => 'bi-cloud-sun',
+        ],
+        [
+            'title' => 'Nilai tukar berhasil disinkronkan',
+            'time' => $dashboardSafeTime($dashboardCurrencyLatest),
+            'icon' => 'bi-currency-exchange',
+        ],
+        [
+            'title' => 'Berita global terbaru masuk',
+            'time' => $dashboardSafeTime($dashboardNewsLatest),
+            'icon' => 'bi-newspaper',
+        ],
+        [
+            'title' => 'Risk scoring terakhir dihitung',
+            'time' => $dashboardSafeTime($dashboardRiskLatest),
+            'icon' => 'bi-shield-check',
+        ],
+        [
+            'title' => 'Data ekonomi terbaru tersedia',
+            'time' => $dashboardEconomicLatest ? 'Tahun ' . $dashboardEconomicLatest : '-',
+            'icon' => 'bi-graph-up-arrow',
+        ],
+    ];
+
+    $dashboardFactorWeights = [
+        ['label' => 'Berita', 'value' => 40, 'note' => 'Sentimen dan gangguan global'],
+        ['label' => 'Cuaca', 'value' => 30, 'note' => 'Badai, hujan, angin, suhu'],
+        ['label' => 'Inflasi', 'value' => 20, 'note' => 'Tekanan ekonomi negara'],
+        ['label' => 'Mata Uang', 'value' => 10, 'note' => 'Perubahan nilai tukar'],
+    ];
+@endphp
+
 
 {{-- =====================================================
      GLOBAL RISK COMMAND CENTER HERO
@@ -903,6 +1441,42 @@
             </div>
         </div>
     </div>
+</div>
+
+
+{{-- =====================================================
+     FEATURE COVERAGE SUMMARY
+===================================================== --}}
+<div class="dashboard-section-label">
+    Ringkasan Fitur Terintegrasi
+</div>
+
+<div class="feature-coverage-grid">
+    @foreach($dashboardFeatureCards as $feature)
+        <article class="feature-coverage-card">
+            <div class="feature-coverage-top">
+                <span class="feature-coverage-icon">
+                    <i class="bi {{ $feature['icon'] }}"></i>
+                </span>
+
+                <span class="feature-coverage-status">
+                    Aktif
+                </span>
+            </div>
+
+            <div class="feature-coverage-label">
+                {{ $feature['label'] }}
+            </div>
+
+            <div class="feature-coverage-value">
+                {{ $feature['value'] }}
+            </div>
+
+            <div class="feature-coverage-time">
+                {{ $feature['time'] }}
+            </div>
+        </article>
+    @endforeach
 </div>
 
 {{-- =====================================================
@@ -1480,6 +2054,156 @@
         </div>
     </div>
 </div>
+
+{{-- =====================================================
+     MINI VISUALIZATION AND ACTIVITY
+===================================================== --}}
+<div class="dashboard-analytics-grid">
+    <article class="card h-100">
+        <div class="card-header dashboard-card-header">
+            <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                    <h2 class="card-title mb-0">
+                        Visualisasi Data Mini
+                    </h2>
+
+                    <p class="card-description">
+                        Ringkasan grafik dari fitur visualisasi, risiko, berita, dan nilai tukar.
+                    </p>
+                </div>
+
+                <a
+                    href="{{ route('visualization.index') }}"
+                    class="btn btn-sm btn-light"
+                >
+                    <i class="bi bi-bar-chart me-1"></i>
+                    Lihat Visualisasi
+                </a>
+            </div>
+        </div>
+
+        <div class="card-body p-4">
+            <div class="mini-visual-grid">
+                <section class="mini-visual-card">
+                    <div class="mini-visual-header">
+                        <div>
+                            <h3>Distribusi Risiko</h3>
+                            <small>Rendah, sedang, tinggi, kritis</small>
+                        </div>
+                        <span class="mini-visual-icon"><i class="bi bi-pie-chart"></i></span>
+                    </div>
+                    <div class="mini-chart-wrapper">
+                        <canvas id="dashboardMiniRiskChart"></canvas>
+                    </div>
+                </section>
+
+                <section class="mini-visual-card">
+                    <div class="mini-visual-header">
+                        <div>
+                            <h3>Sentimen Berita</h3>
+                            <small>Positif, netral, negatif</small>
+                        </div>
+                        <span class="mini-visual-icon"><i class="bi bi-chat-square-text"></i></span>
+                    </div>
+                    <div class="mini-chart-wrapper">
+                        <canvas id="dashboardMiniSentimentChart"></canvas>
+                    </div>
+                </section>
+
+                <section class="mini-visual-card">
+                    <div class="mini-visual-header">
+                        <div>
+                            <h3>Nilai Tukar Terbaru</h3>
+                            <small>Data terakhir dari currency API</small>
+                        </div>
+                        <span class="mini-visual-icon"><i class="bi bi-currency-exchange"></i></span>
+                    </div>
+                    <div class="mini-chart-wrapper">
+                        <canvas id="dashboardMiniCurrencyChart"></canvas>
+                    </div>
+                </section>
+
+                <section class="mini-visual-card">
+                    <div class="mini-visual-header">
+                        <div>
+                            <h3>Faktor Risiko</h3>
+                            <small>Bobot komponen scoring</small>
+                        </div>
+                        <span class="mini-visual-icon"><i class="bi bi-sliders"></i></span>
+                    </div>
+                    <div class="mini-chart-wrapper">
+                        <canvas id="dashboardMiniFactorChart"></canvas>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </article>
+
+    <div class="d-grid gap-4">
+        <article class="card">
+            <div class="card-header dashboard-card-header">
+                <h2 class="card-title mb-0">
+                    Faktor Risiko Dominan
+                </h2>
+
+                <p class="card-description">
+                    Bobot utama yang dipakai dalam risk scoring engine.
+                </p>
+            </div>
+
+            <div class="factor-list">
+                @foreach($dashboardFactorWeights as $factor)
+                    <div class="factor-item">
+                        <div class="factor-line">
+                            <span>{{ $factor['label'] }}</span>
+                            <small>{{ $factor['value'] }}%</small>
+                        </div>
+
+                        <div class="factor-meter">
+                            <span style="width: {{ $factor['value'] }}%;"></span>
+                        </div>
+
+                        <div class="text-muted" style="font-size: 0.60rem;">
+                            {{ $factor['note'] }}
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-header dashboard-card-header">
+                <h2 class="card-title mb-0">
+                    Aktivitas Sistem Terbaru
+                </h2>
+
+                <p class="card-description">
+                    Bukti waktu pembaruan data dari fitur utama.
+                </p>
+            </div>
+
+            <div class="activity-list">
+                @foreach($dashboardActivities as $activity)
+                    <div class="activity-item">
+                        <span class="activity-icon">
+                            <i class="bi {{ $activity['icon'] }}"></i>
+                        </span>
+
+                        <div class="activity-copy">
+                            <strong>{{ $activity['title'] }}</strong>
+                            <small>{{ $activity['time'] }}</small>
+                        </div>
+
+                        <span class="activity-badge">
+                            Sukses
+                        </span>
+                    </div>
+                @endforeach
+            </div>
+        </article>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
@@ -3401,5 +4125,264 @@ document.addEventListener(
         );
     }
 );
+</script>
+@endpush
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof Chart === 'undefined') {
+        return;
+    }
+
+    const textColor = '#94a3b8';
+    const gridColor = 'rgba(148, 163, 184, 0.10)';
+
+    const miniChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                backgroundColor: 'rgba(8, 15, 29, 0.96)',
+                titleColor: '#f8fafc',
+                bodyColor: '#cbd5e1',
+                borderColor: 'rgba(34, 211, 238, 0.18)',
+                borderWidth: 1,
+                padding: 10
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: textColor,
+                    font: {
+                        size: 10
+                    }
+                },
+                grid: {
+                    color: gridColor
+                }
+            },
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    color: textColor,
+                    font: {
+                        size: 10
+                    }
+                },
+                grid: {
+                    color: gridColor
+                }
+            }
+        }
+    };
+
+    const riskCanvas = document.getElementById('dashboardMiniRiskChart');
+
+    if (riskCanvas) {
+        new Chart(riskCanvas, {
+            type: 'bar',
+            data: {
+                labels: @json($dashboardRiskDistribution->keys()->values()),
+                datasets: [{
+                    data: @json($dashboardRiskDistribution->values()),
+                    borderWidth: 1,
+                    backgroundColor: [
+                        'rgba(34, 197, 94, 0.78)',
+                        'rgba(234, 179, 8, 0.82)',
+                        'rgba(249, 115, 22, 0.82)',
+                        'rgba(239, 68, 68, 0.82)'
+                    ],
+                    borderColor: [
+                        '#22c55e',
+                        '#eab308',
+                        '#f97316',
+                        '#ef4444'
+                    ]
+                }]
+            },
+            options: miniChartOptions
+        });
+    }
+
+    const sentimentCanvas = document.getElementById('dashboardMiniSentimentChart');
+
+    if (sentimentCanvas) {
+        new Chart(sentimentCanvas, {
+            type: 'doughnut',
+            data: {
+                labels: @json($dashboardSentimentLabels),
+                datasets: [{
+                    data: @json($dashboardSentimentData),
+                    backgroundColor: [
+                        'rgba(34, 197, 94, 0.82)',
+                        'rgba(14, 165, 233, 0.78)',
+                        'rgba(239, 68, 68, 0.82)'
+                    ],
+                    borderColor: '#0d1628',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '62%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: textColor,
+                            usePointStyle: true,
+                            boxWidth: 8,
+                            font: {
+                                size: 10
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    const currencyCanvas = document.getElementById('dashboardMiniCurrencyChart');
+
+    if (currencyCanvas) {
+        new Chart(currencyCanvas, {
+            type: 'line',
+            data: {
+                labels: @json($dashboardCurrencyLabels),
+                datasets: [{
+                    label: 'Nilai Tukar',
+                    data: @json($dashboardCurrencyData),
+                    borderColor: 'rgba(34, 211, 238, 0.95)',
+                    backgroundColor: 'rgba(34, 211, 238, 0.12)',
+                    fill: true,
+                    tension: 0.35,
+                    pointRadius: 3,
+                    pointBackgroundColor: '#22d3ee'
+                }]
+            },
+            options: miniChartOptions
+        });
+    }
+
+    const factorCanvas = document.getElementById('dashboardMiniFactorChart');
+
+    if (factorCanvas) {
+        const factorLabels =
+            @json(collect($dashboardFactorWeights)->pluck('label')->values());
+
+        const factorValues =
+            @json(collect($dashboardFactorWeights)->pluck('value')->values());
+
+        const safeFactorValues = factorValues.map(function (value) {
+            const number = Number(value);
+
+            return Number.isFinite(number)
+                ? number
+                : 0;
+        });
+
+        try {
+            const factorChart = new Chart(factorCanvas, {
+                type: 'bar',
+
+                data: {
+                    labels: factorLabels,
+
+                    datasets: [
+                        {
+                            label: 'Bobot Faktor Risiko',
+                            data: safeFactorValues,
+                            backgroundColor: 'rgba(59, 130, 246, 0.72)',
+                            borderColor: '#38bdf8',
+                            borderWidth: 1,
+                            borderRadius: 8,
+                            maxBarThickness: 22
+                        }
+                    ]
+                },
+
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+
+                        tooltip: {
+                            backgroundColor: 'rgba(8, 15, 29, 0.96)',
+                            titleColor: '#f8fafc',
+                            bodyColor: '#cbd5e1',
+                            borderColor: 'rgba(34, 211, 238, 0.22)',
+                            borderWidth: 1,
+                            padding: 12,
+
+                            callbacks: {
+                                label(context) {
+                                    return ' ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    },
+
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            min: 0,
+                            max: 100,
+
+                            ticks: {
+                                color: textColor,
+                                callback(value) {
+                                    return value + '%';
+                                },
+
+                                font: {
+                                    size: 10
+                                }
+                            },
+
+                            grid: {
+                                color: gridColor
+                            }
+                        },
+
+                        y: {
+                            ticks: {
+                                color: '#cbd5e1',
+
+                                font: {
+                                    size: 10,
+                                    weight: '600'
+                                }
+                            },
+
+                            grid: {
+                                color: 'rgba(148, 163, 184, 0.06)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            window.setTimeout(function () {
+                factorChart.resize();
+            }, 120);
+        } catch (error) {
+            console.error(
+                'Grafik faktor risiko gagal dimuat:',
+                error
+            );
+        }
+    }
+});
 </script>
 @endpush
