@@ -23,3 +23,5 @@ yarn-error.log
 /storage/logs/*.log
 *.bak
 tatus
+
+.env
