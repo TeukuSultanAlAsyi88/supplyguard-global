@@ -2702,3 +2702,39 @@ body.app-dark-theme .page-source-badge,
 body.app-dark-theme .page-meta-badge {
     display: none !important;
 }
+
+/* FIX: cegah dekorasi halaman login muncul di halaman aplikasi */
+body.app-dark-theme::before,
+body.app-dark-theme::after,
+body.app-dark-theme .main::before,
+body.app-dark-theme .main::after,
+body.app-dark-theme .content::before,
+body.app-dark-theme .content::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Pastikan halaman utama tidak memakai layout auth */
+body.app-dark-theme .auth-shell,
+body.app-dark-theme .auth-visual,
+body.app-dark-theme .auth-panel {
+    display: none !important;
+}
+
+/* FIX: cegah dekorasi halaman login muncul di halaman aplikasi */
+body.app-dark-theme::before,
+body.app-dark-theme::after,
+body.app-dark-theme .main::before,
+body.app-dark-theme .main::after,
+body.app-dark-theme .content::before,
+body.app-dark-theme .content::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Pastikan halaman utama tidak memakai layout auth */
+body.app-dark-theme .auth-shell,
+body.app-dark-theme .auth-visual,
+body.app-dark-theme .auth-panel {
+    display: none !important;
+}
